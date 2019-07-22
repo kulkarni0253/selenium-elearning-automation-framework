@@ -56,14 +56,12 @@ public class ApartmentSerachEnqPOM {
 		this.yourEmailEdt.sendKeys(email); 
 	}
 
-
-
 	@FindBy(name="your-subject")
 	private WebElement yourSubjectEdt;
 
 	public void sendyourSubject(String subject) {
 		this.yourSubjectEdt.clear(); 
-		this.yourSubjectEdt.sendKeys(subject); 
+		this.yourSubjectEdt.sendKeys(subject); ;
 	}
 
 	@FindBy(name="your-message")
@@ -73,9 +71,6 @@ public class ApartmentSerachEnqPOM {
 		this.yourMsgEdt.clear(); 
 		this.yourMsgEdt.sendKeys(message); 
 	}
-
-
-
 	@FindBy(xpath="//input[@type='submit']")
 	private WebElement submit;
 
@@ -88,14 +83,10 @@ public class ApartmentSerachEnqPOM {
 
 	public String getmessagePostSubmit() throws InterruptedException
 	{
-
 		Thread.sleep(5000L);
 		String msg=messagePostSubmit.getText();
 		return msg;
-
 	}
-
-
 	@FindBy(xpath="//a[@class='sign-in']")
 	private WebElement loginRegisterlink;
 
