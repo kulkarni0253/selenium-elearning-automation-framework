@@ -48,9 +48,8 @@ public class PropertysearchPOM {
 	@FindBy(xpath = "//*[@id='_property_type_chosen']/div/ul/li[4]")
 	private WebElement propertytype;
 
-	public void selectpropertytypePLOT() throws InterruptedException {
+	public void selectpropertytypePLOT() {
 		propertytypedrop.click();
-		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver,100);
 	    wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='_property_type_chosen']/div/ul/li[4]")));
 	    propertytype.click();
@@ -63,9 +62,8 @@ public class PropertysearchPOM {
 	@FindBy(xpath = "//*[@id='realteo-search-form']/div[2]/div[2]/div/div/ul/li[2]")
 	private WebElement selectregion;
 	
-	public void selectregionCentralBengalore() throws InterruptedException {
+	public void selectregionCentralBengalore() {
 		anyregion.click();	
-		Thread.sleep(2000);
 		selectregion.click();
 	}
 	
