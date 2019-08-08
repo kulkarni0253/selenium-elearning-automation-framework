@@ -6,6 +6,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -15,9 +16,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.trianing.waits.WaitTypes;
+
 public class PropertysearchPOM {
 
       private WebDriver driver; 
+      private WaitTypes waitTypes;
 
 
 	public PropertysearchPOM(WebDriver driver) {
@@ -38,8 +42,7 @@ public class PropertysearchPOM {
 	private WebElement addfield;
 
 	public void enteraddress(String address) {
-		this.addfield.sendKeys(address); 
-		driver.findElement(By.xpath("//h4[@class='search-title']")).click();		
+		this.addfield.sendKeys(address, Keys.TAB); 
 	}
 	
 	@FindBy(xpath="//a[@class='chosen-single chosen-default']")
@@ -50,8 +53,7 @@ public class PropertysearchPOM {
 
 	public void selectpropertytypePLOT() {
 		propertytypedrop.click();
-		WebDriverWait wait = new WebDriverWait(driver,100);
-	    wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='_property_type_chosen']/div/ul/li[4]")));
+		waitTypes.elementToBeClickable(this.propertytype, 100);
 	    propertytype.click();
 	}
 	
@@ -81,10 +83,4 @@ public class PropertysearchPOM {
 	public String searchresultspagecheck() {
 		return Searchresultpage.getText();
 	}
-	
-	
-	
-
-
-
 }

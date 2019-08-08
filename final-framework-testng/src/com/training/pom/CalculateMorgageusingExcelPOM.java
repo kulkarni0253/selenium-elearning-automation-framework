@@ -1,10 +1,5 @@
 package com.training.pom;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -14,13 +9,14 @@ import org.openqa.selenium.support.PageFactory;
 import com.training.generics.GenericMethods;
 import com.trianing.waits.WaitTypes;
 
-public class CalculateMorgagePOM{
+public class CalculateMorgageusingExcelPOM {
 
-      private WebDriver driver; 
-      private WaitTypes waitTypes;
-      private GenericMethods genericMethods = new GenericMethods(driver);
+    private WebDriver driver; 
+    private WaitTypes waitTypes;
+    private GenericMethods genericMethods = new GenericMethods(driver);
 
-	public CalculateMorgagePOM(WebDriver driver) {
+
+	public CalculateMorgageusingExcelPOM(WebDriver driver) {
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}
@@ -30,16 +26,14 @@ public class CalculateMorgagePOM{
 
 	public void mouseOverNewLaunchBtn() {
 		genericMethods.hoverWebelement(newLaunch, driver);
+
 	}
 
-	@FindBy(xpath="//ul[@id='responsive']//a[text()='Donec quis']")
-	private WebElement donecQuisImg;
-
-	public void ClickDonecQuisImg() {
-		this.donecQuisImg.click(); 
+	@FindBy(xpath="//div[@id='wpmm-megamenu']/div/div[3]/div[2]/a")
+	private WebElement prestigeimg;
+	public void clickPrestigeImg() {
+		this.prestigeimg.click(); 
 	}
-
-
 
 	@FindBy(name="amount")
 	private WebElement saleprice;
@@ -94,29 +88,5 @@ public class CalculateMorgagePOM{
 		return msg;
 
 	}
-//
-//
-//	@FindBy(xpath="//a[@class='sign-in']")
-//	private WebElement loginRegisterlink;
-//
-//	public void ClickloginRegisterlink() {
-//		this.loginRegisterlink.click(); 
-//	}
-//
-//	@FindBy(xpath="//input[@id='user_login']")
-//	private WebElement userLogin;
-//
-//	public void senduserLogin() throws IOException {
-//		this.userLogin.clear(); 
-//
-//		FileInputStream fis = new FileInputStream("./resources/others.properties");
-//		Properties pro=new Properties();
-//		pro.load(fis);
-//		String userID=pro.getProperty("UserID");
-//		this.userLogin.sendKeys(userID); 
-//
-//
-//	}
-
 
 }

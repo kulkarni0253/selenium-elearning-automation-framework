@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -18,7 +19,7 @@ import com.training.pom.ApartmentSerachEnqPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class ApartmentSerachEnqPOMTest {
+public class ApartmentSerachEnqTest {
 
 	private WebDriver driver; 
 	private String baseUrl; 
@@ -51,25 +52,29 @@ public class ApartmentSerachEnqPOMTest {
 
 	@Test
 	public void apartmentserachenq() throws InterruptedException {
-		apartmentSerachEnqPOM.mouseOverNewLaunchBtn();
-		apartmentSerachEnqPOM.ClickDonecQuisImg();
-		apartmentSerachEnqPOM.sendyourName("manzoor");
-		apartmentSerachEnqPOM.sendyourEmail("manzoor@gmail.com");
-		apartmentSerachEnqPOM.sendyourSubject("apartments");
-		apartmentSerachEnqPOM.sendyourMessage("looking for an apartment");
+		try{
+		apartmentSerachEnqPOM.mouseOverNewLaunchBtn(driver);//this does mouseover launch button
+		apartmentSerachEnqPOM.ClickDonecQuisImg();//click DonecQuisImg image
+		apartmentSerachEnqPOM.sendyourName("manzoor");//send your name here
+		apartmentSerachEnqPOM.sendyourEmail("manzoor@gmail.com");//send your email here
+		apartmentSerachEnqPOM.sendyourSubject("apartments");//send your subject here
+		apartmentSerachEnqPOM.sendyourMessage("looking for an apartment");//send your message here
 		apartmentSerachEnqPOM.clickSubmit();
-    	System.out.println("After click on submit message received is: "+apartmentSerachEnqPOM.getmessagePostSubmit());
+    	System.out.println("After click on submit message received is: "+apartmentSerachEnqPOM.getmessagePostSubmit());//after clicking submit message displays here
+    	
+    	try {
+			Assert.assertEquals(apartmentSerachEnqPOM.getmessagePostSubmit(), "Thank you for your message. It has been sent");
+			System.out.println("***Message populated on screen is as Expected****");
 
-		if(apartmentSerachEnqPOM.getmessagePostSubmit().equalsIgnoreCase("Thank you for your message. It has been sent"))
-		{
-			System.out.println("***Message Submitted*****");
+		} catch (java.lang.AssertionError e) {
+			System.out.println("***Message populated on screen is NOT as Expected****");
+			screenShot.captureScreenShot("Incorrect_Message_apartmentsearchEnq");//if any error,  screenshot captured
+			e.printStackTrace();
 		}
-		else{
-
-		screenShot.captureScreenShot("Error_apartmentserachenq_Test");
-		 System.out.println("***Message cound NOT be submitted****");
-
+		}catch(Exception e){
+			e.printStackTrace();
+			screenShot.captureScreenShot("apartmentserachenq() issue screenshot");
+			System.out.println("Something is wrong with your test case screenshot is captured at location : C:\\Users\\HarshalKulkarni\\Desktop\\screenshots please check here");
 		}
 	}
-
 }

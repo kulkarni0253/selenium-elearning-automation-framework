@@ -1,5 +1,6 @@
 package com.training.dataproviders;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.testng.annotations.DataProvider;
@@ -26,14 +27,13 @@ public class LoginDataProviders {
 			result[count ++] = obj; 
 		}
 		
-		
 		return result;
 	}
 	
 	@DataProvider(name = "excel-inputs")
-	public Object[][] getExcelData(){
-		String fileName ="C:/Users/Naveen/Desktop/Testing.xlsx"; 
-		return new ApachePOIExcelRead().getExcelContent(fileName); 
+	public Object[][] getExcelData() throws IOException{
+		String fileName =""; 
+		return new ApachePOIExcelRead().getExcelContent(fileName);
 	}
 	
 	@DataProvider(name = "xls-inputs")
@@ -41,4 +41,22 @@ public class LoginDataProviders {
 		// ensure you will have the title as first line in the file 
 		return new ReadExcel().getExcelData("C:/Users/Naveen/Desktop/Testing.xls", "Sheet1"); 
 	}
+	
+	
+//	@DataProvider
+//  public Object[][] getData() throws IOException
+//  {
+//      ApachePOIExcelRead apachePOIExcelRead = new ApachePOIExcelRead();
+//      List<List<Object>> data = ApachePOIExcelRead.getExcelContent("C:/Users/SarojiniEmekar/Desktop/Testing.xlsx");
+//      
+//        Object[][] a = new Object[data.size()][3];
+//        
+//        for(int i = 0; i < data.size(); i++) { 
+//            for(int j = 0; j < 3; j++) { 
+//                a[i][j] =  (data.get(i)).get(j); 
+//                System.out.println("Data Provider values: "+a[i][j]);
+//                } 
+//            }
+//      return a;
+//  }
 }

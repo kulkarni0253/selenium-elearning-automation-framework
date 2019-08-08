@@ -1,27 +1,20 @@
 package com.training.pom;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.training.generics.GenericMethods;
 import com.trianing.waits.WaitTypes;
 
-public class ApartmentSerachEnqPOM {
-
-      private WebDriver driver;
-      private WaitTypes waitTypes;
-      private GenericMethods genericMethods = new GenericMethods(driver);
-
-
-	public ApartmentSerachEnqPOM(WebDriver driver) {
+public class ApartmentformwithDBvalPOM {
+	
+	private WebDriver driver;
+    private WaitTypes waitTypes;
+    private GenericMethods genericMethods = new GenericMethods(driver); 
+    
+	public ApartmentformwithDBvalPOM(WebDriver driver) {
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}
@@ -33,10 +26,10 @@ public class ApartmentSerachEnqPOM {
 		genericMethods.hoverWebelement(newLaunch, driver);
 	}
 
-	@FindBy(xpath="//ul[@id='responsive']//a[text()='Donec quis']")
-	private WebElement donecQuisImg;
-	public void ClickDonecQuisImg() {
-		this.donecQuisImg.click(); 
+	@FindBy(xpath="//div[@id='wpmm-megamenu']/div/div[3]/div[2]/a")
+	private WebElement prestigeimg;
+	public void clickPrestigeImg() {
+		this.prestigeimg.click(); 
 	}
 
 	@FindBy(name="your-name")
@@ -60,7 +53,7 @@ public class ApartmentSerachEnqPOM {
 
 	public void sendyourSubject(String subject) {
 		this.yourSubjectEdt.clear(); 
-		this.yourSubjectEdt.sendKeys(subject); ;
+		this.yourSubjectEdt.sendKeys(subject);
 	}
 
 	@FindBy(name="your-message")
@@ -70,10 +63,11 @@ public class ApartmentSerachEnqPOM {
 		this.yourMsgEdt.clear(); 
 		this.yourMsgEdt.sendKeys(message); 
 	}
-	@FindBy(xpath="//input[@type='submit']")
+	@FindBy(xpath="//div[@class='wpcf7']//input[@class='wpcf7-form-control wpcf7-submit']")
 	private WebElement submit;
 
-	public void clickSubmit() {
+	public void clickSubmit() throws InterruptedException {
+		Thread.sleep(2000);
 		this.submit.click();
 	}
 

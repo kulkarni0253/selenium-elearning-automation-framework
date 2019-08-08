@@ -1,10 +1,17 @@
 package com.training.generics;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+import com.trianing.waits.WaitTypes;
 
 /**
  * 
@@ -15,6 +22,7 @@ import org.openqa.selenium.WebElement;
  */
 public class GenericMethods {
 	WebDriver driver ; 
+	private WaitTypes waitTypes;
 	
 	public GenericMethods(WebDriver driver){
 		this.driver = driver;
@@ -48,10 +56,7 @@ public class GenericMethods {
 		}	
 		System.out.println("Sorry Element not found, so not returned...");
 		return null;
-
-
 	}
-	
 	
 	// shall give if it has multiple entries as a list in DOM 
 	
@@ -81,4 +86,33 @@ public class GenericMethods {
 	public boolean checkSingleEntry(String locator, String type){
 		return getElementsAsList(locator, type).size() ==1;
 	}
+	
+	public String hoverWebelementandgettext(WebElement HovertoWebElement, WebDriver driver)
+			throws InterruptedException {
+			Actions builder = new Actions(driver);
+			builder.moveToElement(HovertoWebElement).perform();
+			Thread.sleep(3000);
+			return HovertoWebElement.getText();
+			}
+	
+	public void hoverWebelement(WebElement HovertoWebElement, WebDriver driver) {
+			Actions builder = new Actions(driver);
+			builder.moveToElement(HovertoWebElement).perform();
+			}
+	
+	public void hoverWebelementandclick(WebElement HovertoWebElement, WebDriver driver) {
+		Actions builder = new Actions(driver);
+		builder.moveToElement(HovertoWebElement).click().build().perform();
+		}
+	
+	public void selectdropdownbyvisibletext(WebElement element, String visibletext) {
+		Select oSelect = new Select(element);
+		oSelect.selectByVisibleText(visibletext);
+		}
+	
+	public void switchToWindow(WebDriver driver, int win_num) {
+		ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+		driver.switchTo().window(tabs.get(win_num)); // moving to newly open window
+		}
+
 }

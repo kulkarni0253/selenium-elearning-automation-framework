@@ -1,4 +1,5 @@
 package com.training.readexcel;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class ReadExcel {
 
 	// Test method, change the path of the .xls file 
 	public static void main(String[] args) {
-		String[][] result = new ReadExcel().getExcelData("C:/Users/Naveen/Desktop/Testing.xls", "Sheet1"); 
+		String[][] result = new ReadExcel().getExcelData("C:\\Users\\HarshalKulkarni\\Desktop\\Morgage_testdata.xlsx", "RETD_005"); 
 		
 		for(String [] temp : result){
 			for(String temp1: temp){

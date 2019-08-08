@@ -19,7 +19,7 @@ import com.training.pom.CalculateMorgagePOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class CalculateMorgagePOMTest{
+public class CalculateMorgageTest{
 
 	private WebDriver driver; 
 	private String baseUrl; 
@@ -52,23 +52,29 @@ public class CalculateMorgagePOMTest{
 
 	@Test
 	public void calculateMorgageAMT() throws InterruptedException {
-		calculateMorgagePOM.mouseOverNewLaunchBtn();
-		calculateMorgagePOM.ClickDonecQuisImg();
-		calculateMorgagePOM.entersaleprice("400000");
-		calculateMorgagePOM.enterdownpayment("20000");
-		calculateMorgagePOM.enterloantermyears("20");
-		calculateMorgagePOM.enterinterestrate("7.25");
-		calculateMorgagePOM.clickCalculate();
+		try{
+		calculateMorgagePOM.mouseOverNewLaunchBtn();//this makes mouseover a LAUNCH button
+		calculateMorgagePOM.ClickDonecQuisImg();// this clicks DoneQuisImg
+		calculateMorgagePOM.entersaleprice("400000");// enter SALES PRICE here
+		calculateMorgagePOM.enterdownpayment("20000");// enter DOWNPAYMENT here
+		calculateMorgagePOM.enterloantermyears("20");// enter LOAN TERM YEARS here
+		calculateMorgagePOM.enterinterestrate("7.25");// enter INTEREST RATE here
+		calculateMorgagePOM.clickCalculate(); // clicks CALCULATE button
 		
 		try{
-			Assert.assertEquals(calculateMorgagePOM.getcalculatedvaluetext(), "Monthly Payment: 3003.43 Rs.");
+			Assert.assertEquals(calculateMorgagePOM.getcalculatedvaluetext(), "Monthly Payment: 3003.43 Rs."); //Verifying Monthly Payment value here
 			System.out.println("Value is calculated correctly and its : :"+calculateMorgagePOM.getcalculatedvaluetext());
 			
 		}catch(Exception e){
 			System.out.println("OOPS !!! value is incorrect)");
-			screenShot.captureScreenShot("Incorrect_morgage_screenshot");
+			screenShot.captureScreenShot("Incorrect_morgage_screenshot");// if error, screenshot captured here
 			e.printStackTrace();
 			
+		}
+		}catch(Exception e){
+			e.printStackTrace();
+			screenShot.captureScreenShot("calculateMorgageAMT() issue screenshot");
+			System.out.println("Something is wrong with your test case screenshot is captured at location : C:\\Users\\HarshalKulkarni\\Desktop\\screenshots please check here");
 		}
 		
 

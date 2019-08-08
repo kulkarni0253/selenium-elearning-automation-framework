@@ -20,8 +20,9 @@ import com.training.generics.ScreenShot;
 import com.training.pom.PropertysearchPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
+import com.trianing.waits.WaitTypes;
 
-public class PropertysearchPOMTest {
+public class PropertysearchTest {
 
 	private WebDriver driver;
 	private String baseUrl;
@@ -53,33 +54,37 @@ public class PropertysearchPOMTest {
 
 	@Test
 	public void propertysearchtest() throws InterruptedException {
-
-		propertysearchPOM.clicknewlaunch();
-		System.out.println(propertysearchPOM.getfindyourhometitle());
+		try{
+		propertysearchPOM.clicknewlaunch(); //click NEW LAUNCH Tab
+		System.out.println(propertysearchPOM.getfindyourhometitle()); // prints page title for PROPERTY
 
 		try {
-			Assert.assertEquals(propertysearchPOM.getfindyourhometitle(), "New Launch – Real Estate");
+			Assert.assertEquals(propertysearchPOM.getfindyourhometitle(), "New Launch – Real Estate"); // Verifies Property page title
 			System.out.println("User is on Property Search as expected");
 
 		} catch (Exception e) {
 			System.out.println("user landed on wrong page...please check with developer on this..");
 			screenShot.captureScreenShot("Incorrect_Home_title_page");
 		}
-		propertysearchPOM.enteraddress("Electronic City, Bengaluru, Karnataka, India");
-		propertysearchPOM.selectpropertytypePLOT();
-		propertysearchPOM.selectregionCentralBengalore();
-		propertysearchPOM.searchbuttonclick();
-		System.out.println(propertysearchPOM.searchresultspagecheck());
+		propertysearchPOM.enteraddress("Electronic City, Bengaluru, Karnataka, India");// enters address in address field
+		propertysearchPOM.selectpropertytypePLOT();// select PLOTS from the drop down options
+		propertysearchPOM.selectregionCentralBengalore();// select CENTRAL BANGLORE as a region from drop down options
+		propertysearchPOM.searchbuttonclick();// clicks search button
+		System.out.println(propertysearchPOM.searchresultspagecheck());// prints search results page title
 
 		try {
-			Assert.assertEquals(propertysearchPOM.searchresultspagecheck(), "Recent Posts");
+			Assert.assertEquals(propertysearchPOM.searchresultspagecheck(), "Recent Posts");// verifies search results page title
 			System.out.println("User is on Property Search results page after inputs as expected");
 
 
 		} catch (Exception e) {
 			System.out.println("user landed on wrong page...please check with developer on this..");
-			screenShot.captureScreenShot("Incorrect_search_results_title_page");
+			screenShot.captureScreenShot("Incorrect_search_results_title_page");//captures screenshot if any error
 		}
-
+		}catch(Exception e){
+			e.printStackTrace();
+			screenShot.captureScreenShot("propertysearchtest() issue screenshot");
+			System.out.println("Something is wrong with your test case screenshot is captured at location : C:\\Users\\HarshalKulkarni\\Desktop\\screenshots please check here");
+		}
 	}
 }
